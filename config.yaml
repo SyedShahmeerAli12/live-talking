@@ -9,9 +9,14 @@ m: 8
 r: 10
 
 # -------- Avatar Model ----------------------------------------------------------
-model: musetalk                # musetalk / wav2lip / ultralight
+model: soulx                   # musetalk / wav2lip / ultralight / soulx
 avatar_id: my_avatar
-batch_size: 16
+batch_size: 4                  # soulx generates fewer frames per call; 4 is stable
+
+# -------- SoulX-FlashHead (only used when model: soulx) ----------------------
+soulx_ckpt_dir: '/workspace/models/SoulX-FlashHead-1_3B'
+soulx_wav2vec_dir: '/workspace/models/wav2vec2-base-960h'
+soulx_venv_python: '/workspace/soulx_venv/bin/python'
 
 # -------- Custom Actions ----------------------------------------------------------
 customvideo_config: ''

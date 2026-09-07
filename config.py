@@ -59,12 +59,23 @@ def parse_args():
 
     # ─── 数字人模型 ────────────────────────────────────────────────────
     parser.add_argument('--model', type=str, default='wav2lip',
-                        help="avatar model: musetalk/wav2lip/ultralight")
+                        help="avatar model: musetalk/wav2lip/ultralight/soulx")
     parser.add_argument('--avatar_id', type=str, default='wav2lip256_avatar1',
                         help="avatar id in data/avatars")
     parser.add_argument('--batch_size', type=int, default=16, help="infer batch")
     parser.add_argument('--modelres', type=int, default=192)
     parser.add_argument('--modelfile', type=str, default='')
+
+    # ─── SoulX-FlashHead ──────────────────────────────────────────────
+    parser.add_argument('--soulx_ckpt_dir', type=str,
+                        default='/workspace/models/SoulX-FlashHead-1_3B',
+                        help="path to SoulX-FlashHead Lite checkpoint dir")
+    parser.add_argument('--soulx_wav2vec_dir', type=str,
+                        default='/workspace/models/wav2vec2-base-960h',
+                        help="path to wav2vec2-base-960h model dir")
+    parser.add_argument('--soulx_venv_python', type=str,
+                        default='/workspace/soulx_venv/bin/python',
+                        help="Python interpreter inside the SoulX venv")
 
     # ─── 自定义动作和多形象 ────────────────────────────────────────────
     parser.add_argument('--customvideo_config', type=str, default='',
