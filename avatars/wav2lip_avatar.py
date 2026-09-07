@@ -142,7 +142,7 @@ class LipReal(BaseAvatar):
         bbox = self.coord_list_cycle[idx]
         combine_frame = self.frame_list_cycle[idx].copy()
         y1, y2, x1, x2 = bbox
-        res_frame = cv2.resize(pred_frame.astype(np.uint8),(x2-x1,y2-y1))
+        res_frame = cv2.resize(pred_frame.astype(np.uint8),(int(x2-x1),int(y2-y1)))
         combine_frame[y1:y2, x1:x2] = res_frame
         return combine_frame
 

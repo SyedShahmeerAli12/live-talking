@@ -179,7 +179,7 @@ class LightReal(BaseAvatar):
         crop_img_ori = crop_img.copy()
 
         crop_img_ori[4:164, 4:164] = pred_frame.astype(np.uint8)
-        crop_img_ori = cv2.resize(crop_img_ori, (x2-x1,y2-y1))
+        crop_img_ori = cv2.resize(crop_img_ori, (int(x2-x1),int(y2-y1)))
         combine_frame[y1:y2, x1:x2] = crop_img_ori
         return combine_frame
 
