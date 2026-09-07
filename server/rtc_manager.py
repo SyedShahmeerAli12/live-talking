@@ -41,9 +41,14 @@ class RTCManager:
 
     async def _create_pc_and_answer(self, avatar_session, sessionid, offer):
         """创建 PeerConnection、添加轨道、SDP 交换，返回已完成 answer 的 pc"""
-        ice_server = RTCIceServer(urls=self.opt.stun)
+        ice_servers = [RTCIceServer(urls=self.opt.stun)]
+        ice_servers.append(RTCIceServer(
+            urls=["turn:openrelay.metered.ca:80", "turn:openrelay.metered.ca:443"],
+            username="openrelayproject",
+            credential="openrelayproject",
+        ))
         pc = RTCPeerConnection(
-            configuration=RTCConfiguration(iceServers=[ice_server])
+            configuration=RTCConfiguration(iceServers=ice_servers)
         )
         self.pcs.add(pc)
 
