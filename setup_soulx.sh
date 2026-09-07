@@ -23,9 +23,9 @@ echo "=== [3/5] Installing SoulX dependencies ==="
 "$VENV/bin/pip" install \
     "torch==2.9.1+cu128" "torchvision==0.24.1+cu128" "torchaudio==2.9.1+cu128" \
     --index-url https://download.pytorch.org/whl/cu128 --quiet
-# SoulX requirements (mediapipe==0.10.9 is unavailable; override to 0.10.13)
-"$VENV/bin/pip" install -r "$REPO/requirements.txt" --quiet || true
-"$VENV/bin/pip" install "mediapipe>=0.10.13" --quiet
+# SoulX requirements (patch mediapipe==0.10.9 → >=0.10.13 before installing)
+sed 's/mediapipe==0\.10\.9/mediapipe>=0.10.13/' "$REPO/requirements.txt" > /tmp/soulx_req_patched.txt
+"$VENV/bin/pip" install -r /tmp/soulx_req_patched.txt --quiet
 # Install the SoulX package itself
 "$VENV/bin/pip" install -e "$REPO" --quiet
 
