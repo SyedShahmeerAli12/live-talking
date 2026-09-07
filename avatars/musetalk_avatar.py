@@ -81,11 +81,13 @@ def load_avatar(avatar_id):
         coord_list_cycle = pickle.load(f)
     frame_list_cycle = None
     input_img_list = glob.glob(os.path.join(full_imgs_path, '*.[jpJP][pnPN]*[gG]'))
+    input_img_list = [f for f in input_img_list if os.path.splitext(os.path.basename(f))[0].isdigit()]
     input_img_list = sorted(input_img_list, key=lambda x: int(os.path.splitext(os.path.basename(x))[0]))
     frame_list_cycle = read_imgs(input_img_list)
     with open(mask_coords_path, 'rb') as f:
         mask_coords_list_cycle = pickle.load(f)
     input_mask_list = glob.glob(os.path.join(mask_out_path, '*.[jpJP][pnPN]*[gG]'))
+    input_mask_list = [f for f in input_mask_list if os.path.splitext(os.path.basename(f))[0].isdigit()]
     input_mask_list = sorted(input_mask_list, key=lambda x: int(os.path.splitext(os.path.basename(x))[0]))
     mask_list_cycle = read_imgs(input_mask_list)
     return frame_list_cycle,mask_list_cycle,coord_list_cycle,mask_coords_list_cycle,input_latent_list_cycle
