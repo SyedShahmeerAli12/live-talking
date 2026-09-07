@@ -43,9 +43,9 @@ class RTCManager:
         """创建 PeerConnection、添加轨道、SDP 交换，返回已完成 answer 的 pc"""
         ice_servers = [RTCIceServer(urls=self.opt.stun)]
         ice_servers.append(RTCIceServer(
-            urls=["turn:openrelay.metered.ca:80", "turn:openrelay.metered.ca:443"],
-            username="openrelayproject",
-            credential="openrelayproject",
+            urls=["turn:numb.viagenie.ca:3478"],
+            username="webrtc@live.com",
+            credential="muazkh",
         ))
         pc = RTCPeerConnection(
             configuration=RTCConfiguration(iceServers=ice_servers)
